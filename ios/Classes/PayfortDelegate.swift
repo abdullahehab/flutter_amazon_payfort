@@ -128,7 +128,10 @@ public class PayFortDelegate: NSObject, PKPaymentAuthorizationViewControllerDele
         paymentRequest.paymentSummaryItems = [
             PKPaymentSummaryItem(label: (requestData["order_description"] as? String) ?? "", amount: amount)
         ]
-        paymentRequest.merchantCapabilities = "credit";
+
+        paymentRequest.merchantCapabilities = [.capability3DS, .capabilityEMV, .capabilityCredit]
+
+        // paymentRequest.merchantCapabilities = "credit";
         // paymentRequest.merchantCapabilities = .capabilityDebit;
         // paymentRequest.merchantCapabilities = .capabilityCredit;
         
