@@ -74,7 +74,7 @@ public class PayFortDelegate: NSObject, PKPaymentAuthorizationViewControllerDele
             request["phone_number"] = phoneNumber;
         }
 
-        request["merchantCapabilities"] = "3DS,debit,credit"
+        
         
         payFort?.hideLoading = options?.hideLoading ?? false
         payFort?.presentAsDefault = options?.presentAsDefault ?? true
@@ -128,7 +128,9 @@ public class PayFortDelegate: NSObject, PKPaymentAuthorizationViewControllerDele
         paymentRequest.paymentSummaryItems = [
             PKPaymentSummaryItem(label: (requestData["order_description"] as? String) ?? "", amount: amount)
         ]
-        paymentRequest.merchantCapabilities = .capability3DS;
+        // paymentRequest.merchantCapabilities = .capability3DS;
+        // paymentRequest.merchantCapabilities = .capabilityDebit;
+        paymentRequest.merchantCapabilities = .capabilityCredit;
         
         let applePayController = PKPaymentAuthorizationViewController(paymentRequest: paymentRequest)
         applePayController?.delegate = self
@@ -172,7 +174,6 @@ public class PayFortDelegate: NSObject, PKPaymentAuthorizationViewControllerDele
                 request["phone_number"] = phoneNumber;
             }
 
-            request["merchantCapabilities"] = "3DS,debit,credit"
 
             
             payFort?.hideLoading = options?.hideLoading ?? false
