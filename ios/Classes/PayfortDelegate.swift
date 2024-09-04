@@ -128,9 +128,9 @@ public class PayFortDelegate: NSObject, PKPaymentAuthorizationViewControllerDele
         paymentRequest.paymentSummaryItems = [
             PKPaymentSummaryItem(label: (requestData["order_description"] as? String) ?? "", amount: amount)
         ]
-        // paymentRequest.merchantCapabilities = .capability3DS;
+        paymentRequest.merchantCapabilities = "credit";
         // paymentRequest.merchantCapabilities = .capabilityDebit;
-        paymentRequest.merchantCapabilities = .capabilityCredit;
+        // paymentRequest.merchantCapabilities = .capabilityCredit;
         
         let applePayController = PKPaymentAuthorizationViewController(paymentRequest: paymentRequest)
         applePayController?.delegate = self
